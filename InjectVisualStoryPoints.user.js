@@ -2,13 +2,12 @@
 // @name         InjectVisualStoryPoints
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  Add visual representation of story points into the story points dialogue window
+// @author       rluks
 // @match        https://issues.redhat.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
-
 
 'use strict';
 
@@ -23,10 +22,15 @@ const callback = function(mutationsList, observer) {
     // Use traditional 'for loops' for IE 11
     for(const mutation of mutationsList) {
         if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
-        }
-        else if (mutation.type === 'attributes') {
-            console.log('The ' + mutation.attributeName + ' attribute was modified.');
+            //console.log('A child node has been added or removed.');
+            //console.log(mutation);
+
+            mutation.addedNodes.forEach( (node) => {
+               if(node.id === 'modal-field-view'){
+                   console.log("hello there");
+                   console.log(node);
+               }
+            });
         }
     }
 };
