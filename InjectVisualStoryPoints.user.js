@@ -19,22 +19,15 @@ const config = { attributes: false, childList: true, subtree: false };
 
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList, observer) {
-    // Use traditional 'for loops' for IE 11
     for(const mutation of mutationsList) {
         if (mutation.type === 'childList') {
-            //console.log('A child node has been added or removed.');
-            //console.log(mutation);
-
             mutation.addedNodes.forEach( (node) => {
                if(node.id === 'modal-field-view'){
-                   //console.log("hello there");
-                   //console.log(node);
                    node.childNodes.forEach((childNode) => {
-                       //console.log(childNode);
                        if(childNode.className === 'jira-dialog-heading'){
-                           //console.log(childNode);
-                           if(childNode.textContent === "Edit Story Points for RHELCMP-5755"){
+                           if(childNode.textContent.includes("Edit Story Points for")){
                                console.log("It's a dialogue window for editing story points!");
+                               console.log(childNode);
                            }
                        }
                    });
