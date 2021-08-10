@@ -27,8 +27,17 @@ const callback = function(mutationsList, observer) {
 
             mutation.addedNodes.forEach( (node) => {
                if(node.id === 'modal-field-view'){
-                   console.log("hello there");
-                   console.log(node);
+                   //console.log("hello there");
+                   //console.log(node);
+                   node.childNodes.forEach((childNode) => {
+                       //console.log(childNode);
+                       if(childNode.className === 'jira-dialog-heading'){
+                           //console.log(childNode);
+                           if(childNode.textContent === "Edit Story Points for RHELCMP-5755"){
+                               console.log("It's a dialogue window for editing story points!");
+                           }
+                       }
+                   });
                }
             });
         }
