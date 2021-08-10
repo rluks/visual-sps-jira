@@ -26,8 +26,8 @@ const callback = function(mutationsList, observer) {
                    node.childNodes.forEach((childNode) => {
                        if(childNode.className === 'jira-dialog-heading'){
                            if(childNode.textContent.includes("Edit Story Points for")){
-                               console.log("It's a dialogue window for editing story points!");
-                               console.log(childNode);
+                               //console.log("It's a dialogue window for editing story points!");
+                               //console.log(childNode);
                                InjectStoryPoints(node, childNode);
                            }
                        }
@@ -39,6 +39,11 @@ const callback = function(mutationsList, observer) {
 };
 
 function InjectStoryPoints(node, headingNode){
+
+  console.log(node);
+  var inputEl = node.getElementsByTagName("input")[0];
+  //inputEl.value = 10;
+
   var tableEL = document.createElement("TABLE");
   tableEL.setAttribute("id", "myTable");
   headingNode.parentNode.insertBefore(tableEL, headingNode.nextSibling);
@@ -47,10 +52,29 @@ function InjectStoryPoints(node, headingNode){
   y.setAttribute("id", "myTr");
   document.getElementById("myTable").appendChild(y);
 
-  var z = document.createElement("TD");
-  var t = document.createTextNode("cell");
-  z.appendChild(t);
-  document.getElementById("myTr").appendChild(z);
+  var small = document.createElement("TD");
+  var smallTxt = document.createTextNode("mouse 🐭");
+  small.appendChild(smallTxt);
+  small.onclick = function () {
+      inputEl.value = 1;
+  };
+  document.getElementById("myTr").appendChild(small);
+
+  var medium = document.createElement("TD");
+  var mediumTxt = document.createTextNode("cat 🐱");
+  medium.appendChild(mediumTxt);
+  medium.onclick = function () {
+      inputEl.value = 3;
+  };
+  document.getElementById("myTr").appendChild(medium);
+
+  var big = document.createElement("TD");
+  var bigTxt = document.createTextNode("dog 🐶");
+  big.appendChild(bigTxt);
+  big.onclick = function () {
+      inputEl.value = 5;
+  };
+  document.getElementById("myTr").appendChild(big);
 }
 
 // Create an observer instance linked to the callback function
