@@ -28,6 +28,7 @@ const callback = function(mutationsList, observer) {
                            if(childNode.textContent.includes("Edit Story Points for")){
                                console.log("It's a dialogue window for editing story points!");
                                console.log(childNode);
+                               InjectStoryPoints(node, childNode);
                            }
                        }
                    });
@@ -37,8 +38,27 @@ const callback = function(mutationsList, observer) {
     }
 };
 
+function InjectStoryPoints(node, headingNode){
+  var tableEL = document.createElement("TABLE");
+  tableEL.setAttribute("id", "myTable");
+  headingNode.parentNode.insertBefore(tableEL, headingNode.nextSibling);
+
+  var y = document.createElement("TR");
+  y.setAttribute("id", "myTr");
+  document.getElementById("myTable").appendChild(y);
+
+  var z = document.createElement("TD");
+  var t = document.createTextNode("cell");
+  z.appendChild(t);
+  document.getElementById("myTr").appendChild(z);
+}
+
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
 
 // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
+
+
+
+
