@@ -40,12 +40,18 @@ const callback = function(mutationsList, observer) {
 
 function InjectStoryPoints(node, headingNode){
 
+  let mouseSP = 1;
+  let catSP = 2;
+  let dogSP = 5;
+
   console.log(node);
   var inputEl = node.getElementsByTagName("input")[0];
-  //inputEl.value = 10;
 
   var tableEL = document.createElement("TABLE");
   tableEL.setAttribute("id", "myTable");
+  tableEL.style.width = '100%';
+  tableEL.style.textAlign = 'center';
+
   headingNode.parentNode.insertBefore(tableEL, headingNode.nextSibling);
 
   var y = document.createElement("TR");
@@ -53,26 +59,29 @@ function InjectStoryPoints(node, headingNode){
   document.getElementById("myTable").appendChild(y);
 
   var small = document.createElement("TD");
-  var smallTxt = document.createTextNode("mouse 🐭");
+  var smallTxt = document.createTextNode("mouse 🐭 (" + mouseSP + ")");
+  small.style.fontSize = "medium";
   small.appendChild(smallTxt);
   small.onclick = function () {
-      inputEl.value = 1;
+      inputEl.value = mouseSP;
   };
   document.getElementById("myTr").appendChild(small);
 
   var medium = document.createElement("TD");
-  var mediumTxt = document.createTextNode("cat 🐱");
+  var mediumTxt = document.createTextNode("cat 🐱(" + catSP + ")");
+  medium.style.fontSize = "large";
   medium.appendChild(mediumTxt);
   medium.onclick = function () {
-      inputEl.value = 3;
+      inputEl.value = catSP;
   };
   document.getElementById("myTr").appendChild(medium);
 
   var big = document.createElement("TD");
-  var bigTxt = document.createTextNode("dog 🐶");
+  var bigTxt = document.createTextNode("dog 🐶(" + dogSP + ")");
+  big.style.fontSize = "xx-large";
   big.appendChild(bigTxt);
   big.onclick = function () {
-      inputEl.value = 5;
+      inputEl.value = dogSP;
   };
   document.getElementById("myTr").appendChild(big);
 }
