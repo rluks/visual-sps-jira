@@ -47,43 +47,40 @@ function InjectStoryPoints(node, headingNode){
   console.log(node);
   var inputEl = node.getElementsByTagName("input")[0];
 
-  var tableEL = document.createElement("TABLE");
-  tableEL.setAttribute("id", "myTable");
-  tableEL.style.width = '100%';
-  tableEL.style.textAlign = 'center';
+  var containerEL = document.createElement("div");
+  containerEL.setAttribute("id", "visual-sps-jira");
+  containerEL.style.width = '100%';
+  containerEL.style.textAlign = 'center';
 
-  headingNode.parentNode.insertBefore(tableEL, headingNode.nextSibling);
+  headingNode.parentNode.insertBefore(containerEL, headingNode.nextSibling);
 
-  var y = document.createElement("TR");
-  y.setAttribute("id", "myTr");
-  document.getElementById("myTable").appendChild(y);
-
-  var small = document.createElement("TD");
+  var small = document.createElement("button");
   var smallTxt = document.createTextNode("mouse 🐭 (" + mouseSP + ")");
   small.style.fontSize = "medium";
   small.appendChild(smallTxt);
   small.onclick = function () {
       inputEl.value = mouseSP;
   };
-  document.getElementById("myTr").appendChild(small);
+  document.getElementById("visual-sps-jira").appendChild(small);
 
-  var medium = document.createElement("TD");
+  var medium = document.createElement("button");
   var mediumTxt = document.createTextNode("cat 🐱(" + catSP + ")");
   medium.style.fontSize = "large";
   medium.appendChild(mediumTxt);
   medium.onclick = function () {
       inputEl.value = catSP;
   };
-  document.getElementById("myTr").appendChild(medium);
+  document.getElementById("visual-sps-jira").appendChild(medium);
 
-  var big = document.createElement("TD");
+  var big = document.createElement("button");
   var bigTxt = document.createTextNode("dog 🐶(" + dogSP + ")");
   big.style.fontSize = "xx-large";
   big.appendChild(bigTxt);
   big.onclick = function () {
       inputEl.value = dogSP;
+      //TODO highlight input field
   };
-  document.getElementById("myTr").appendChild(big);
+  document.getElementById("visual-sps-jira").appendChild(big);
 }
 
 // Create an observer instance linked to the callback function
