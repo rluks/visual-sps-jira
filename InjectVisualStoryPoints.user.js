@@ -44,6 +44,11 @@ function InjectStoryPoints(node, headingNode){
   let catSP = 2;
   let dogSP = 5;
 
+  let baseHeight = 40;
+  let smallHeight = baseHeight + 'px';
+  let mediumHeight = 1.618 * baseHeight + 'px';
+  let bigHeight = 1.618 * 1.618 * baseHeight + 'px';
+
   console.log(node);
   var inputEl = node.getElementsByTagName("input")[0];
 
@@ -55,8 +60,9 @@ function InjectStoryPoints(node, headingNode){
   headingNode.parentNode.insertBefore(containerEL, headingNode.nextSibling);
 
   var small = document.createElement("button");
-  var smallTxt = document.createTextNode("mouse 🐭 (" + mouseSP + ")");
-  small.style.fontSize = "medium";
+  var smallTxt = document.createTextNode("🐭(" + mouseSP + ")");
+  small.style.height = smallHeight;
+  small.style.fontSize = "large";
   small.appendChild(smallTxt);
   small.onclick = function () {
       inputEl.value = mouseSP;
@@ -64,7 +70,8 @@ function InjectStoryPoints(node, headingNode){
   document.getElementById("visual-sps-jira").appendChild(small);
 
   var medium = document.createElement("button");
-  var mediumTxt = document.createTextNode("cat 🐱(" + catSP + ")");
+  var mediumTxt = document.createTextNode("🐱(" + catSP + ")");
+  medium.style.height = mediumHeight;
   medium.style.fontSize = "large";
   medium.appendChild(mediumTxt);
   medium.onclick = function () {
@@ -73,8 +80,9 @@ function InjectStoryPoints(node, headingNode){
   document.getElementById("visual-sps-jira").appendChild(medium);
 
   var big = document.createElement("button");
-  var bigTxt = document.createTextNode("dog 🐶(" + dogSP + ")");
-  big.style.fontSize = "xx-large";
+  var bigTxt = document.createTextNode("🐶(" + dogSP + ")");
+  big.style.height = bigHeight;
+  big.style.fontSize = "large";
   big.appendChild(bigTxt);
   big.onclick = function () {
       inputEl.value = dogSP;
